@@ -1,12 +1,20 @@
 import React from "react";
-import CheckIn from "./containers/CheckIn";
-import ResetForm from "./components/ResetForm/ResetForm";
+import { connect } from "react-redux";
+import { addPfdReset } from "./store/actions/"
+import CheckIn from "./containers/CheckIn/CheckIn";
+import ResetForm from "./containers/ResetForm/ResetForm";
 
-const App = () => (
-  <div>
-    <CheckIn />
-    {/* <ResetForm /> */}
-  </div>
-);
+const App = (props) => {
+  const onSubmit = (formValues) => {
+    props.addPfdReset(formValues)
+  };
 
-export default App;
+  return (
+    <div>
+      <CheckIn />
+      <ResetForm handleSubmit={onSubmit} />
+    </div>
+  );
+};
+
+export default connect(null, { addPfdReset })(App);

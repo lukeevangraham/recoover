@@ -7,7 +7,7 @@ const initialState = {
 const checkInReducer = (state = initialState, action) => {
   switch (action.type) {
     case actionTypes.ADD_PFD_RESET:
-      // console.log(`payload: ${action.payload}`);
+      console.log(`payload: ${action.payload}`);
       return {
         ...state,
       };

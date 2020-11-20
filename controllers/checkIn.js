@@ -9,6 +9,7 @@ module.exports = {
     //     })
     // })
     try {
+      console.log("BODY", req.body)
       const dbCheckIn = await db.CheckIn.create(req.body);
       res.json({
         message: `Check-In added ${dbCheckIn}`,
