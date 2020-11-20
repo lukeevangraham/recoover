@@ -9,3 +9,12 @@ export const fetchRecentPfdReset = (id) => async (dispatch) => {
     payload: response.data,
   });
 };
+
+export const addPfdReset = (checkInData) => async (dispatch) => {
+  const response = await axios.post(`/checkIns`, checkInData)
+
+  dispatch({
+    type: actionTypes.ADD_PFD_RESET,
+    payload: response.data
+  })
+}

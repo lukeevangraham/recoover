@@ -5,7 +5,7 @@ import ResetForm from "./components/ResetForm/ResetForm";
 const App = () => (
   <div>
     <CheckIn />
-    <ResetForm />
+    {/* <ResetForm /> */}
   </div>
 );
 

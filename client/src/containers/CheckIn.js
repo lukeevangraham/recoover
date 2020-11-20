@@ -1,29 +1,49 @@
 import React, { useState, useEffect } from "react";
 import axios from "axios";
+import { connect } from "react-redux";
+import { fetchRecentPfdReset } from "../store/actions/";
 
 const CheckIn = (props) => {
-  const [lastReset, setLastReset] = useState(null);
+  // console.log(`[CheckIn: ] ${JSON.stringify(props)}`)
+  console.log(props)
+  // const [lastReset, setLastReset] = useState(null);
+
+  const { onFetchRecentPfdReset } = props;
 
   useEffect(() => {
-    getLastReset();
-  }, []);
+    // getLastReset();
+    onFetchRecentPfdReset("8675309")
+  }, [onFetchRecentPfdReset]);
 
   // Get checkIn data
-  const getLastReset = async () => {
-    const result = await axios.get(`http://localhost:3001/checkIns/8675309`);
-    console.log(result);
-    setLastReset(new Date(result.data[0].date));
-  };
+  // const getLastReset = async () => {
+  //   const result = await axios.get(`http://localhost:3001/checkIns/8675309`);
+  //   console.log(result);
+  //   setLastReset(new Date(result.data[0].date));
+  // };
 
   let checkIn = <p>Loading...</p>;
 
-  if (lastReset) {
+  if (props.recentPfdReset) {
     checkIn = (
-      <p>You last checked in on: {lastReset.toLocaleDateString("en-US")}</p>
+
+      <p>You last checked in on: {new Date(props.recentPfdReset).toLocaleDateString("en-US")}</p>
     );
   }
 
-return <div>{checkIn}</div>;
+  return <div>{checkIn}</div>;
 };
 
-export default CheckIn;
+const mapStateToProps = state => {
+  return {
+    recentPfdReset: state.checkIn.pfdResetDate
+  }
+}
+
+const mapDispatchToProps = (dispatch) => {
+  return {
+    onFetchRecentPfdReset: (id) => dispatch(fetchRecentPfdReset(id)),
+  };
+};
+
+export default connect(mapStateToProps, mapDispatchToProps)(CheckIn);
