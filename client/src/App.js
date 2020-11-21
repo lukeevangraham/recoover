@@ -6,13 +6,14 @@ import ResetForm from "./containers/ResetForm/ResetForm";
 
 const App = (props) => {
   const onSubmit = (formValues) => {
+    console.log("values: ", formValues)
     props.addPfdReset(formValues)
   };
 
   return (
     <div>
       <CheckIn />
-      <ResetForm handleSubmit={onSubmit} />
+      <ResetForm onSubmit={onSubmit} />
     </div>
   );
 };
