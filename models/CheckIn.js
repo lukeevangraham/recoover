@@ -5,11 +5,9 @@ const Schema = mongoose.Schema;
 const checkInSchema = new Schema({
   userId: {
     type: String,
-    default: '8675309'
   },
-  date: {
+  resetDate: {
     type: Date,
-    default: Date.now,
   },
 });
 

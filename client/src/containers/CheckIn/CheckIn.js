@@ -3,18 +3,25 @@ import { connect } from "react-redux";
 import { fetchRecentPfdReset } from "../../store/actions";
 
 const CheckIn = (props) => {
-  // console.log(`[CheckIn: ] ${JSON.stringify(props)}`)
-  // const [lastReset, setLastReset] = useState(null);
 
   const { onFetchRecentPfdReset, recentPfdReset } = props;
 
   useEffect(() => {
-    onFetchRecentPfdReset("8675309");
+    onFetchRecentPfdReset(props.userId);
   }, [onFetchRecentPfdReset]);
 
   let checkIn = <p>Loading...</p>;
 
+  
+  const isValidDate = (d) => d instanceof Date && !isNaN(d)
+
   if (recentPfdReset) {
+    checkIn = (
+      <p>No reset date recorded.  Enter one below: </p>
+    )
+  }
+  
+  if (recentPfdReset && isValidDate(recentPfdReset)) {
     checkIn = (
       <p>
         You last reset on: {recentPfdReset.toLocaleDateString("en-US")}.
@@ -34,6 +41,7 @@ const CheckIn = (props) => {
 const mapStateToProps = (state) => {
   return {
     recentPfdReset: new Date(state.checkIn.pfdResetDate),
+    userId: state.auth.userId
   };
 };
 

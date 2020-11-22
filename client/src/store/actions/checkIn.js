@@ -10,7 +10,7 @@ export const fetchRecentPfdReset = (id) => async (dispatch) => {
   });
 };
 
-export const addPfdReset = (checkInData, callback) => async (dispatch) => {
+export const addPfdReset = (checkInData) => async (dispatch) => {
   console.log("DATA: ", checkInData);
   const response = await axios.post(`/checkIns`, checkInData);
 

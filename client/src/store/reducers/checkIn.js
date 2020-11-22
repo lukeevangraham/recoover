@@ -7,10 +7,11 @@ const initialState = {
 const checkInReducer = (state = initialState, action) => {
   switch (action.type) {
     case actionTypes.ADD_PFD_RESET:
-      console.log(`LOOK HERE: ${state.pfdResetDate}`);
+      // console.log(`LOOK HERE: ${state.pfdResetDate}`);
       const newDate = new Date(action.payload.date);
       const prevDate = new Date(state.pfdResetDate);
-      if (newDate > prevDate) {
+    console.log("LOOK HERE: ", prevDate === "")
+      if (newDate > prevDate || prevDate !== "") {
         return {
           ...state,
           pfdResetDate: newDate,
@@ -21,10 +22,13 @@ const checkInReducer = (state = initialState, action) => {
         };
       }
     case actionTypes.FETCH_RECENT_PFD_RESET:
-      return {
-        ...state,
-        pfdResetDate: action.payload[0].date,
-      };
+      // console.log("LOOK HERE: ", action.payload[0].resetDate)
+      if (action.payload[0]) {
+        return {
+          ...state,
+          pfdResetDate: action.payload[0].resetDate,
+        };
+      }
 
     default:
       return state;

@@ -10,7 +10,7 @@ module.exports = {
     // })
     try {
       console.log("BODY", req.body);
-      const dbCheckIn = await db.CheckIn.create({ date: req.body.resetDate });
+      const dbCheckIn = await db.CheckIn.create(req.body);
       res.json({
         message: `Check-In added ${dbCheckIn}`,
         date: req.body.resetDate
@@ -21,9 +21,10 @@ module.exports = {
   },
   // get a users most recent checkIn
   getOneRecent: async (req, res) => {
+    console.log(req.params)
     try {
       const dbCheckIn = await db.CheckIn.find({ userId: req.params.id }).sort({
-        date: -1,
+        resetDate: -1,
       });
       res.json(dbCheckIn);
     } catch (error) {
