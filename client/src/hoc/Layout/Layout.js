@@ -7,7 +7,7 @@ import GoogleAuth from "../../containers/GoogleAuth/GoogleAuth";
 
 const Layout = (props) => {
   const onSubmit = (formValues) => {
-    formValues.userId = props.userId
+    formValues.userId = props.userId;
     props.addPfdReset(formValues);
   };
 
@@ -33,9 +33,10 @@ const Layout = (props) => {
 const mapStateToProps = (state) => {
   return {
     isAuthenticated: state.auth.userId !== null,
-    userId: state.auth.userId
-
+    userId: state.auth.userId,
   };
 };
 
-export default connect(mapStateToProps, { addPfdReset, fetchRecentPfdReset })(Layout);
+export default connect(mapStateToProps, { addPfdReset, fetchRecentPfdReset })(
+  Layout
+);

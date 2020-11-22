@@ -10,7 +10,7 @@ const checkInReducer = (state = initialState, action) => {
       // console.log(`LOOK HERE: ${state.pfdResetDate}`);
       const newDate = new Date(action.payload.date);
       const prevDate = new Date(state.pfdResetDate);
-    console.log("LOOK HERE: ", prevDate === "")
+      console.log("LOOK HERE: ", prevDate === "");
       if (newDate > prevDate || prevDate !== "") {
         return {
           ...state,
@@ -28,6 +28,8 @@ const checkInReducer = (state = initialState, action) => {
           ...state,
           pfdResetDate: action.payload[0].resetDate,
         };
+      } else {
+        return state;
       }
 
     default:
