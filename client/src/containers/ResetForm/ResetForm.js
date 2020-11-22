@@ -1,35 +1,23 @@
-import React, { useState } from "react";
+import React from "react";
 import { Field, reduxForm } from "redux-form";
 import DatePicker from "react-datepicker";
 
 import "react-datepicker/dist/react-datepicker-cssmodules.css";
 
 const ResetForm = (props) => {
-  console.log(props)
 
-  // const [resetDate, setResetDate] = useState(new Date())
-  const [startDate, setStartDate] = useState(new Date());
-
-  const FieldDatePicker = ({ input, placeholder = "hi", minDate, maxDate }) => {
-    console.log(input);
-
-    return (
-      <DatePicker
-        selected={startDate}
-        onChange={(time) => setStartDate(time)}
-      />
-    );
-  };
+  const ReduxFormDate = (props) => (
+    <DatePicker
+      selected={props.input.value || null}
+      onChange={props.input.onChange}
+    />
+  );
 
   return (
     <form onSubmit={props.handleSubmit}>
       <div>
         <label htmlFor="enteredLastResetDate">Enter reset date:</label>
-        <Field name="resetDate" component={FieldDatePicker} />
-      </div>
-      <div>
-        <label htmlFor="lastName">Last Name</label>
-        <Field name="lastName" component="input" type="text" />
+        <Field name="resetDate" component={ReduxFormDate} />
       </div>
       <div>
         <button type="submit">Submit</button>
