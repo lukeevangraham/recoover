@@ -1,0 +1,23 @@
+.btn, .btn:visited, input[type=submit] {
+    display: inline-block;
+    padding: 10px 30px;
+    font-family: 'Domine', serif;
+    font-weight: 300;
+    text-decoration: none;
+    border-radius: 200px;
+    transition: background-color 0.2s, border 0.2s, color 0.2s;
+}
+
+.btnFull, .btn-full:visited, input[type=submit] {
+background: linear-gradient(#254732, #12291b);
+    border: 1px solid #12291b;
+    color: #fff;
+}
+
+.btn:hover, .btn:active, input[type=submit]:hover, input[type=submit]:active {
+    background: linear-gradient(#1c3626, #0c1b12);
+}
+
+.btnFull:hover, .btn-full:active {
+    border: 1px solid #1C3A27;
+}

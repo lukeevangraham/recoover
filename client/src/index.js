@@ -5,6 +5,7 @@ import { reducer as formReducer } from "redux-form";
 import { Provider } from "react-redux";
 import thunk from "redux-thunk";
 
+import "./index.css"
 
 import App from "./App";
 import checkInReducer from "./store/reducers/checkIn";

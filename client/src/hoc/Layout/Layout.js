@@ -1,32 +1,31 @@
 import React from "react";
 import { connect } from "react-redux";
+
+import Aux from "../Aux/Aux";
 import { addPfdReset, fetchRecentPfdReset } from "../../store/actions";
+import classes from "./Layout.module.css";
+import Toolbar from "../../components/Navigation/Toolbar/Toolbar";
 import CheckIn from "../../containers/CheckIn/CheckIn";
 import ResetForm from "../../containers/ResetForm/ResetForm";
-import GoogleAuth from "../../containers/GoogleAuth/GoogleAuth";
 
 const Layout = (props) => {
-  const onSubmit = (formValues) => {
-    formValues.userId = props.userId;
-    props.addPfdReset(formValues);
-  };
 
   let moreFeatures = null;
 
-  if (props.isAuthenticated) {
-    moreFeatures = (
-      <React.Fragment>
-        <CheckIn />
-        <ResetForm onSubmit={onSubmit} />
-      </React.Fragment>
-    );
-  }
+  // if (props.isAuthenticated) {
+  //   moreFeatures = (
+  //     <div className={classes.Content}>
+  //       <CheckIn />
+  //       <ResetForm onSubmit={onSubmit} />
+  //     </div>
+  //   );
+  // }
 
   return (
-    <React.Fragment>
-      <GoogleAuth />
-      {moreFeatures}
-    </React.Fragment>
+    <Aux>
+      <Toolbar isAuth={props.isAuthenticated} />
+      <main className={classes.Content}>{props.children}</main>
+    </Aux>
   );
 };
 
